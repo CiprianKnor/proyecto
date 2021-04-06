@@ -34,7 +34,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @auth
+                        <a href="{{ route('users.notifications') }}" class="nav-link">
+                            <li class="nav-item">
+                                <span class="badge badge-info" style="color: #fff;">
+                                    {{ auth()->user()->unreadNotifications->count() }}
+                                    Notificaciones sin leer
+                                </span>
+                            </li> 
+                        </a>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -106,9 +115,9 @@
             </div>
         </main>
         @else
-            <main class="py-4">
-                @yield('content')
-            </main>
+        <main class="py-4">
+            @yield('content')
+        </main>
         @endif
 
     </div>
