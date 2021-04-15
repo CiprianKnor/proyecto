@@ -41,9 +41,14 @@
                                     {{ auth()->user()->unreadNotifications->count() }}
                                     Notificaciones sin leer
                                 </span>
-                            </li> 
+                            </li>
                         </a>
                         @endauth
+                        <li class="nav-item">
+                            <a href="{{ route('discussions.index') }}" class="nav-link">
+                                Discussions
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -102,7 +107,9 @@
                             <ul class="list-group">
                                 @foreach($channels as $channel)
                                 <li class="list-group-item">
+                                    <a href="{{ route('discussions.index') }}?channel={{ $channel->slug }}">
                                     {{$channel->name}}
+                                    </a>
                                 </li>
                                 @endforeach
                             </ul>

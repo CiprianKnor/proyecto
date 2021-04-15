@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     public function notifications(){
-        auth()->users()->unreadNotifications->markAsRead();
+        auth()->user()->unreadNotifications->markAsRead();
         return view('users.notifications', [
-            'notifications' => auth()->user()->notifications
+            'notifications' => auth()->user()->notifications()->paginate(5)
         ]);
     }
 }
