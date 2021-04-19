@@ -2,16 +2,14 @@
 
 @section('content')
 
-@foreach($discussions as $discussion)
+@foreach($discussions->reverse() as $discussion)
 
-<div class="card mb-4">
-    @include('partials.discussion-header')
-
-    <div class="card-body">
+<div class="card my-2">
+    <a href="{{ route('discussions.show', $discussion->slug) }}" class="btn btn-sm">
         <div class="text-center">
-        <strong>{{ $discussion->title }}</strong>
+            <strong>{{ $discussion->title }}</strong>
         </div>
-    </div>
+    </a>
 </div>
 
 @endforeach
