@@ -2,7 +2,7 @@
 
 @section('content')
 
-@foreach($discussions->reverse() as $discussion)
+@foreach($discussions as $discussion)
 
 <div class="card my-2">
     <a href="{{ route('discussions.show', $discussion->slug) }}" class="btn btn-sm">

@@ -6,12 +6,13 @@ use App\Discussion;
 use App\Reply;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateDiscussionRequest;
+use DB;
 
 class DiscussionsController extends Controller
 {
 
     public function __construct(){
-        //$this->middleware(['auth', 'verified'])->only(['create', 'store']);
+        $this->middleware(['auth', 'verified'])->only(['create', 'store']);
     }
 
     /**
@@ -21,8 +22,11 @@ class DiscussionsController extends Controller
      */
     public function index()
     {
+        $query = Discussion::query();
+        $query->orderBy('created_at', 'desc')->get();
+        $discussions = $query->filterByChannels()->paginate(15);
         return view('discussions.index', [
-            'discussions' => Discussion::filterByChannels()->paginate(20)
+            'discussions' => $discussions
         ]);
     }
 

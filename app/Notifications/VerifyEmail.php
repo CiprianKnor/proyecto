@@ -9,6 +9,5 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class VerifyEmail extends BaseVerifyEmail implements ShouldQueue
 {
     use Queueable;
-
     
 }

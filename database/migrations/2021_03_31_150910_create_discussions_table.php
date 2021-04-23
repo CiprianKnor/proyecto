@@ -19,7 +19,7 @@ class CreateDiscussionsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->integer('reply_id')->nullable();
-            $table->string('slug')->unique();  //What is laravel -> What-is-laravel
+            $table->string('slug');  //What is laravel -> What-is-laravel
             $table->integer('channel_id');
             $table->timestamps();
         });
