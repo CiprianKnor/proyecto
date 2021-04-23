@@ -17,8 +17,49 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- JS -->
+    <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+
     @yield('css')
 </head>
+
+<style>
+    .logon {
+        display: none;
+    }
+
+    .register {
+        display: none;
+    }
+</style>
+
+<script>
+    var n = "false";
+    var f = "false";
+    $(document).ready(function() {
+        $("#login").click(function() {
+            if (n == "false") {
+                $("#logon").removeClass("logon");
+                n = "true";
+            } else {
+                $("#logon").addClass("logon");
+                n = "false";
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $("#register").click(function() {
+            if (f == "false") {
+                $("#register").removeClass("register");
+                f = "true";
+            } else {
+                $("#register").addClass("register");
+                f = "false";
+            }
+        });
+    });
+</script>
 
 <body>
     <div id="app">
@@ -56,11 +97,11 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" id="login">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" id="register">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
@@ -85,6 +126,8 @@
                 </div>
             </div>
         </nav>
+        @include('auth/login')
+        @include('auth/register')
 
         @if(!in_array(request()->path(), ['login', 'register', 'password/email', 'password/reset']))
         <main class="container py-4">
@@ -108,7 +151,7 @@
                                 @foreach($channels as $channel)
                                 <li class="list-group-item">
                                     <a href="{{ route('discussions.index') }}?channel={{ $channel->slug }}">
-                                    {{$channel->name}}
+                                        {{$channel->name}}
                                     </a>
                                 </li>
                                 @endforeach
