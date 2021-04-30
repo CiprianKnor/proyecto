@@ -16,6 +16,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- JS -->
     <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
@@ -24,84 +26,54 @@
 </head>
 
 <style>
-    .logon {
-        display: none;
-    }
-
-    .register {
-        display: none;
+    .a-mio:hover{
+        color: blue;
     }
 </style>
 
 <script>
-    var n = "false";
-    var f = "false";
-    $(document).ready(function() {
-        $("#login").click(function() {
-            if (n == "false") {
-                $("#logon").removeClass("logon");
-                n = "true";
-            } else {
-                $("#logon").addClass("logon");
-                n = "false";
-            }
-        });
-    });
+    (function($) {
 
-    $(document).ready(function() {
-        $("#register").click(function() {
-            if (f == "false") {
-                $("#register").removeClass("register");
-                f = "true";
-            } else {
-                $("#register").addClass("register");
-                f = "false";
-            }
+        "use strict";
+
+        $('nav .dropdown').hover(function() {
+            var $this = $(this);
+            $this.addClass('show');
+            $this.find('> a').attr('aria-expanded', true);
+            $this.find('.dropdown-menu').addClass('show');
+        }, function() {
+            var $this = $(this);
+            $this.removeClass('show');
+            $this.find('> a').attr('aria-expanded', false);
+            $this.find('.dropdown-menu').removeClass('show');
         });
-    });
+
+    })(jQuery);
 </script>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                <form action="#" class="searchform order-lg-last">
+                    <div class="form-group d-flex">
+                        <input type="text" class="form-control pl-3" placeholder="Search">
+                        <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
+                    </div>
+                </form>
+                <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav mr-auto">
-                        @auth
-                        <a href="{{ route('users.notifications') }}" class="nav-link">
-                            <li class="nav-item">
-                                <span class="badge badge-info" style="color: #fff;">
-                                    {{ auth()->user()->unreadNotifications->count() }}
-                                    Notificaciones sin leer
-                                </span>
-                            </li>
-                        </a>
-                        @endauth
-                        <li class="nav-item">
-                            <a href="{{ route('discussions.index') }}" class="nav-link">
-                                Discussions
-                            </a>
-                        </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" id="login">{{ __('Login') }}</a>
+                            <a href="{{ route('login') }}" class="nav-link" id="login">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" id="register">{{ __('Register') }}</a>
+                            <a href="{{ route('register') }}" class="nav-link" id="register">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
@@ -111,7 +83,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item a-mio" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
@@ -119,15 +91,29 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
+                                <a href="{{ route('discussions.index') }}"></a>
                             </div>
                         </li>
                         @endguest
+                        <li class="nav-item">
+                            <a href="{{ route('discussions.index') }}" class="nav-link">
+                                Discussions
+                            </a>
+                        </li>
+                        @auth
+                        <li class="nav-item">
+                            <a href="{{ route('users.notifications') }}" class="nav-link">
+                                <span>
+                                    {{ auth()->user()->unreadNotifications->count() }}
+                                    Notificaciones sin leer
+                                </span>
+                            </a>
+                        </li>
+                        @endauth
                     </ul>
                 </div>
             </div>
         </nav>
-        @include('auth/login')
-        @include('auth/register')
 
         @if(!in_array(request()->path(), ['login', 'register', 'password/email', 'password/reset']))
         <main class="container py-4">

@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <div id="register" class="register" style="position: fixed; left:30%; top:25%; z-index:1000; width:800px">
     <div class="container">
         <div class="row justify-content-center">
@@ -73,3 +76,4 @@
         </div>
     </div>
 </div>
+@endsection
