@@ -6,6 +6,7 @@ use App\Notifications\ReplyMarkedAsBestReply;
 
 class Discussion extends Model
 {
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');

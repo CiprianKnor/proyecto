@@ -20,6 +20,7 @@ class CreateDiscussionsTable extends Migration
             $table->text('content');
             $table->integer('reply_id')->nullable();
             $table->string('slug');  //What is laravel -> What-is-laravel
+            $table->string('url')->nullable();
             $table->integer('channel_id');
             $table->timestamps();
         });

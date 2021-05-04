@@ -7,7 +7,7 @@
 
                 <div class="card-body">
                     
-                <form action="{{ route('discussions.store') }}" method="post">
+                <form action="{{ route('discussions.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title">Title</label>
@@ -18,6 +18,10 @@
                         <label for="content">Content</label>
                         <input id="content" type="hidden" name="content">
                         <trix-editor input="content"></trix-editor>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" name="file">
                     </div>
 
                     <div class="form-group">

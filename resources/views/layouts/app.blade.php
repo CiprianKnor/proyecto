@@ -59,9 +59,9 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span> Menu
                 </button>
-                <form action="#" class="searchform order-lg-last">
+                <form action="/discussions" class="searchform order-lg-last" method="get">
                     <div class="form-group d-flex">
-                        <input type="text" class="form-control pl-3" placeholder="Search">
+                        <input type="text" class="form-control pl-3" placeholder="Search" name="title">
                         <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
                     </div>
                 </form>
