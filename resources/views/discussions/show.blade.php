@@ -13,6 +13,13 @@
         <hr>
 
         {!! $discussion->content !!}
+        <div style="display: flex; justify-content:space-between; width:100px; float:right; margin-right:100px;">
+            <form action="/discussions/{{ $discussion->id }}" method="post">
+                @csrf
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
+            </form>
+        </div>
         @if($discussion->bestReply)
         <div class="card card-success my-5">
             <div class="card-header">

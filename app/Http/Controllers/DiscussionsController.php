@@ -122,7 +122,8 @@ class DiscussionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Discussion::findOrFail($id)->delete();
+        return redirect('discussions');
     }
 
     public function reply(Discussion $discussion, Reply $reply)
