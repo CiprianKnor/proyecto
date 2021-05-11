@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="file" name="file">
+                        <input type="file" name="image" id="image" placeholder="choose image">
                     </div>
 
                     <div class="form-group">

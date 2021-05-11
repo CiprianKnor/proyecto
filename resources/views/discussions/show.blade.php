@@ -16,9 +16,13 @@
         <div style="display: flex; justify-content:space-between; width:100px; float:right; margin-right:100px;">
             <form action="/discussions/{{ $discussion->id }}" method="post">
                 @csrf
+                <div class="row">
+                <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline; margin-right:0;">Editar</a>
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
+                </div>
             </form>
+            <img src="{{ asset('img/'.$discussion->url) }}" alt="">
         </div>
         @if($discussion->bestReply)
         <div class="card card-success my-5">
