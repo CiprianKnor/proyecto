@@ -63,7 +63,11 @@ class DiscussionsController extends Controller
         //dd("ok")
 
         if ($request->hasFile('image')) {
-          
+            $file = $request->file('image')->getClientOriginalName();
+            $files = $request->file('image');
+            $name = $files->getClientOriginalName();
+            $path = public_path().'/storage';
+            $files->move($path, $name);
 
             $name = $request->file('image')->getClientOriginalName();
 
@@ -72,7 +76,7 @@ class DiscussionsController extends Controller
                 'content' => $request->content,
                 'channel_id' => $request->channel,
                 'slug' => str_slug($request->title),
-                'url' => $name
+                'url' => $file
             ]);
         } else {
             auth()->user()->discussions()->create([
