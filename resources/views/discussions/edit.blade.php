@@ -22,10 +22,6 @@
             </div>
 
             <div class="form-group">
-                <input type="file" name="file">
-            </div>
-
-            <div class="form-group">
                 <label for="channel">Channel</label>
                 <select name="channel_id" id="channel_id" class="form-control form_cont" required>
 
