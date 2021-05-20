@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@dws.es',
             'password' => bcrypt('secret'),
-            'role_id' => 1
+            'role_id' => 2
         ]);
 
         $count = 100;

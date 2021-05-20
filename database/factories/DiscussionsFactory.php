@@ -10,7 +10,7 @@ $factory->define(Discussion::class, function (Faker $faker) {
         'user_id' => $this->faker->numberBetween(1,100),
         'title' => $this->faker->text(40),
         'content' => $this->faker->paragraph(),
-        'reply_id' => $this->faker->numberBetween(1,3),
+        'reply_id' => $this->faker->numberBetween(0,0),
         'slug' => $this->faker->text(40),
         'channel_id' => $this->faker->numberBetween(1,5),
     ];
