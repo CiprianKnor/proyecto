@@ -28,14 +28,14 @@ class DiscussionsController extends Controller
         if ($title) {
             $query = Discussion::query();
             $query->where('title', 'like', "%$title%");
-            $discussions2 = $query->paginate(15);
+            $discussions2 = $query->paginate(10);
             return view('discussions.index', [
                 'discussions' => $discussions2
             ]);
         } else {
             $query = Discussion::query();
             $query->orderBy('created_at', 'desc')->get();
-            $discussions = $query->filterByChannels()->paginate(15);
+            $discussions = $query->filterByChannels()->paginate(10);
         }
         return view('discussions.index', [
             'discussions' => $discussions

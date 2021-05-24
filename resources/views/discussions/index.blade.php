@@ -2,18 +2,23 @@
 
 @section('content')
 
-@foreach($discussions as $discussion)
+<ul>
+    @foreach($discussions as $discussion)
+    <li class="list-group-item">
+        <a href="{{ route('discussions.show', $discussion->slug) }}">
+            {{ $discussion->title }}
+        </a>
+    </li>
+    @endforeach
 
-<div class="card my-2">
-    <a href="{{ route('discussions.show', $discussion->slug) }}" class="btn btn-sm">
-        <div class="text-center">
-            <strong>{{ $discussion->title }}</strong>
-        </div>
-    </a>
-</div>
+    <div id="hidden_forum" class="hidden">
 
-@endforeach
 
-{{ $discussions->appends(['channel' => request()->query('channel') ])->links() }}
+
+        <span class="text-block" id="hidden-info"><span id="hidden_forums_count">0</span> <span id="hidden_forums_text" data-i18n="category is being hidden"> category is being hidden</span> · <a title="" data-original-title="" data-toggle="modal" href="#filter-modal" id="modify_forum_filter" data-i18n class="modify_forum_filter">Modify filter</a></span>
+    </div>
+</ul>
+
+<!--{{ $discussions->appends(['channel' => request()->query('channel') ])->links() }}-->
 
 @endsection
