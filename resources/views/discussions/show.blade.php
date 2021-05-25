@@ -1,189 +1,201 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <div class="container content-panel wt-selectable-rows">
+        <div id="posts-list" data-post-order="asc" data-current-page="" data-total-pages="" data-total-posts="">
 
-<div class="card">
 
-    @include('partials.discussion-header')
+            <div class="col-xs-12 first-post  unSelectableRow">
 
-    <div class="card-body">
-        <div class="text-center">
-            <strong>{{ $discussion->title }}</strong>
-        </div>
+                <div class="pull-left post-body-wrapper" data-divToolsId="divForumTools">
+                    <form id="first_post" method="post" action="/mbactions" name="first_post" data-prevent-ctrl-enter="true">
+                        <div id="post_list_1325785074" class="post-body pull-left" data-post-userid="8037844">
+                            
+                            <span class="post-body-author">
 
-        <hr>
+                                <span class="display_name"><a href="/profile/8037844" class='display_username username usergroup1444001' data-toggle="popover" data-placement="bottom">@include('partials.discussion-header')</a></span>
 
-        {!! $discussion->content !!}
 
-        @if($discussion->url)
+                            </span>
+                            <span class="text-muted post-date">
+                                <span id="edited_post_date_1325785074" class="edited" data-toggle="tooltip" data-placement="bottom">
 
-        <img src="{{ asset('storage/'.$discussion->url) }}" alt="" style="width: 100%; height:auto;">
+                                </span>
 
-        <form action="/discussions/{{ $discussion->id }}" method="post">
+                            </span>
 
-            @csrf
+                            <h4>
+                                <div class="text-center">
+                                    <strong>{{ $discussion->title }}</strong>
+                                </div>
+                                {!! $discussion->content !!}
+                                @if($discussion->url)
 
-            @if(auth()->user()->isadmin() == true)
-            <div class="row" style="float: right;">
-                <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline; margin-right:5px;">Editar</a>
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
-            </div>
-            @endif
+                                <img src="{{ asset('storage/'.$discussion->url) }}" alt="" style="width: 100%; height:auto;">
 
-            @can('read-task', $discussion)
-            <div class="row" style="float: right;">
-                <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;">Editar</a>
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
-            </div>
-            @endcan
+                                <form action="/discussions/{{ $discussion->id }}" method="post">
 
-        </form>
+                                    @csrf
 
-        @if($discussion->bestReply)
+                                    @if(auth()->user()->isadmin() == true)
+                                    <div class="row" style="float: right;">
+                                        <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline; margin-right:5px;">Editar</a>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
+                                    </div>
+                                    @endif
 
-        <div class="card card-success my-5">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <img width="40px" height="40px" style="border-radius: 50%;" class="mr-2" src="{{ Gravatar::src($discussion->bestReply->owner->email) }}" alt="">
-                        <strong>
-                            {{ $discussion->bestReply->owner->name }}
-                        </strong>
-                    </div>
-                    <div>
-                        <strong>BEST REPLY</strong>
-                    </div>
+                                    @can('read-task', $discussion)
+                                    <div class="row" style="float: right;">
+                                        <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;">Editar</a>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
+                                    </div>
+                                    @endcan
+
+                                </form>
+
+                                @if($discussion->bestReply)
+
+                                <div class="card card-success my-5">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <img width="40px" height="40px" style="border-radius: 50%;" class="mr-2" src="{{ Gravatar::src($discussion->bestReply->owner->email) }}" alt="">
+                                                <strong>
+                                                    {{ $discussion->bestReply->owner->name }}
+                                                </strong>
+                                            </div>
+                                            <div>
+                                                <strong>BEST REPLY</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        {!! $discussion->bestReply->content !!}
+                                    </div>
+                                </div>
+
+                                @endif
+
+                                @else
+
+                                <form action="/discussions/{{ $discussion->id }}" method="post">
+
+                                    @csrf
+
+                                    @if(auth()->user()->isadmin() == true)
+                                    <div class="row" style="float: right;">
+                                        <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline; margin-right:5px;">Editar</a>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
+                                    </div>
+                                    @endif
+
+                                    @can('read-task', $discussion)
+                                    <div class="row" style="float: right;">
+                                        <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline; margin-right:5px;">Editar</a>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
+                                    </div>
+                                    @endcan
+
+                                </form>
+
+                                @if($discussion->bestReply)
+
+                                <div class="card card-success my-5">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <img width="40px" height="40px" style="border-radius: 50%;" class="mr-2" src="{{ Gravatar::src($discussion->bestReply->owner->email) }}" alt="">
+                                                <strong>
+                                                    {{ $discussion->bestReply->owner->name }}
+                                                </strong>
+                                            </div>
+                                            <div>
+                                                <strong>BEST REPLY</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        {!! $discussion->bestReply->content !!}
+                                    </div>
+                                </div>
+
+                                @endif
+
+                                @endif
+                            </h4>
+                        </div>
+                    </form>
+
+                    @foreach($discussion->replies()->paginate(3) as $reply)
+                    <form id="first_post" method="post" action="" name="first_post" data-prevent-ctrl-enter="true">
+                        <div id="post_list_1325785074" class="post-body pull-left" data-post-userid="8037844">
+                            <div>
+                                <img width="40px" height="40px" style="border-radius: 50%;" src="{{ Gravatar::src($reply->owner->email) }}" alt="">
+                                <span>{{ $reply->owner->name }}</span>
+                            </div>
+
+
+                            <div>
+                                @auth
+                                @if(auth()->user()->id === $discussion->user_id)
+                                <form action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-info">Mark ad best reply</button>
+                                </form>
+
+                                @endif
+
+                                @endauth
+
+                            </div>
+
+                            <div class="card-body">
+                                {!! $reply->content !!}
+                            </div>
+                        </div>
+                    </form>
+                    @endforeach
+
+
+                    <form id="first_post" method="post" action="{{ route('replies.store', $discussion->slug) }}" name="first_post" data-prevent-ctrl-enter="true">
+                        <div id="post_list_1325785074" class="post-body pull-left" data-post-userid="8037844">
+                            <div class="card my-5">
+                                <div class="card-header">
+                                    Add a reply
+                                </div>
+
+
+                                <div class="card-body">
+                                    @auth
+                                    <form action="{{ route('replies.store', $discussion->slug) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="content" id="content">
+                                        <input type="text" name="content">
+
+
+                                        <button type="submit" class="btn btn-sm my-2 btn-success">
+                                            Add reply
+                                        </button>
+                                    </form>
+
+                                    @else
+
+                                    <a href="{{ route('login') }}" class="btn btn-info">Sign in to add a reply</a>
+
+                                    @endauth
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="card-body">
-                {!! $discussion->bestReply->content !!}
-            </div>
         </div>
-
-        @endif
-
-        @else
-
-        <form action="/discussions/{{ $discussion->id }}" method="post">
-
-            @csrf
-
-            @if(auth()->user()->isadmin() == true)
-            <div class="row" style="float: right;">
-                <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline; margin-right:5px;">Editar</a>
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
-            </div>
-            @endif
-
-            @can('read-task', $discussion)
-            <div class="row" style="float: right;">
-                <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline; margin-right:5px;">Editar</a>
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
-            </div>
-            @endcan
-
-        </form>
-
-        @if($discussion->bestReply)
-
-        <div class="card card-success my-5">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <img width="40px" height="40px" style="border-radius: 50%;" class="mr-2" src="{{ Gravatar::src($discussion->bestReply->owner->email) }}" alt="">
-                        <strong>
-                            {{ $discussion->bestReply->owner->name }}
-                        </strong>
-                    </div>
-                    <div>
-                        <strong>BEST REPLY</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                {!! $discussion->bestReply->content !!}
-            </div>
-        </div>
-
-        @endif
-
-        @endif
-
-    </div>
-
-</div>
-
-@foreach($discussion->replies()->paginate(3) as $reply)
-
-<div class="card my-5">
-    <div class="card-header">
-        <div class="d-flex justify-content-between">
-            <div>
-                <img width="40px" height="40px" style="border-radius: 50%;" src="{{ Gravatar::src($reply->owner->email) }}" alt="">
-                <span>{{ $reply->owner->name }}</span>
-            </div>
-
-
-            <div>
-                @auth
-                @if(auth()->user()->id === $discussion->user_id)
-                <form action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-sm btn-info">Mark ad best reply</button>
-                </form>
-
-                @endif
-
-                @endauth
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="card-body">
-        {!! $reply->content !!}
-    </div>
-
-</div>
-
-
-@endforeach
-
-
-{{ $discussion->replies()->paginate(3)->links() }}
-
-
-<div class="card my-5">
-    <div class="card-header">
-        Add a reply
-    </div>
-
-
-    <div class="card-body">
-        @auth
-        <form action="{{ route('replies.store', $discussion->slug) }}" method="POST">
-            @csrf
-            <input type="hidden" name="content" id="content">
-            <trix-editor input="content"></trix-editor>
-
-
-            <button type="submit" class="btn btn-sm my-2 btn-success">
-                Add reply
-            </button>
-        </form>
-
-        @else
-
-        <a href="{{ route('login') }}" class="btn btn-info">Sign in to add a reply</a>
-
-        @endauth
-
     </div>
 </div>
 
