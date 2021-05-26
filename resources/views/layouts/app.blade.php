@@ -12,56 +12,6 @@
 
     <title>Stage2</title>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <script>
-        try {
-            if (typeof(Storage) !== "undefined" && sessionStorage.getItem("loadThemeEditor")) {
-                var showThemeLoader = {};
-                showThemeLoader.loadingThemeEditor = 1;
-                window.parent.postMessage(showThemeLoader, '*');
-            }
-        } catch (e) {}
-    </script>
-
-
-
-    <script language="JavaScript" type="text/javascript">
-        var global_hash = {
-            sso_disabled: 1,
-            AppId: '',
-            perm_view_profiles: '1',
-            forum_embed_url: '',
-            date_format: '3',
-            uid: '267033',
-            enable_pms: '',
-            forum_SSO_login_url: '',
-            less_variables: '',
-            skin: 'angela',
-            max_file_size: '204800',
-            display_time: '1',
-            alt_embed_param: '0'
-        };
-        if (typeof wtbx === 'undefined') var wtbx = {};
-
-        wtbx.isPostRequest = 0;
-
-        wtbx.cdn = 'https://cdn.websitetoolbox.com';
-        wtbx.userLang = '';
-        wtbx.wysiwyg = 'both';
-        wtbx.toolbarCompatible = '1';
-        wtbx.uses_smilies = '0';
-        wtbx.isBot = '';
-        wtbx.date_format = '3';
-        wtbx.homePage = 'categories';
-        wtbx.reqreg = 'checked';
-        wtbx.webPushAlert = false;
-    </script>
-
 
 
 
@@ -169,15 +119,6 @@
                     </ul>
 
 
-                    <ul class="nav pull-right wt-pages-links hidden">
-                        <a href="/post/printadd" class="pull-left btn btn-uppercase btn-primary start-new-topic-btn hidden signupLogin"><span data-i18n>New Topic</span></a>
-
-                        <li class="pull-left search_modal_toggle">
-                            <a href="/search" data-toggle="tooltip" data-placement="bottom" title="Search" data-i18n="[title]Search">
-                                <i class="icon icon-search"></i>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </header>
         </div>

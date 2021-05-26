@@ -5,8 +5,18 @@
 <div class="container content-panel forum-list all-topics-list wt-topics">
     <div role="tabpanel" class="tab-pane active" id="topics">
 
-        <a href="/post/printadd" class="pull-right btn btn-uppercase btn-primary start-new-topic-btn signupLogin"><span data-i18n>New Topic</span>
-        </a>
+        @if(!in_array(request()->path(), ['login', 'register', 'password/email', 'password/reset']))
+
+        @auth
+        <a href="{{ route('discussions.create') }}" class="pull-right btn btn-uppercase btn-primary start-new-topic-btn"><span data-i18n>New Topic</span></a>
+        @else
+        <a href="{{ route('login') }}" class="pull-right btn btn-uppercase btn-primary start-new-topic-btn"><span data-i18n>Sign in to add discussion</span></a>
+        @endif
+        @else
+        <main class="py-4">
+            @yield('content')
+        </main>
+        @endif
 
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="/latest" aria-controls="topics" role="tab" data-toggle="tab" data-i18n>Topics</a></li>

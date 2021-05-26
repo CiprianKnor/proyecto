@@ -11,7 +11,7 @@
                 <div class="pull-left post-body-wrapper" data-divToolsId="divForumTools">
                     <form id="first_post" method="post" action="/mbactions" name="first_post" data-prevent-ctrl-enter="true">
                         <div id="post_list_1325785074" class="post-body pull-left" data-post-userid="8037844">
-                            
+
                             <span class="post-body-author">
 
                                 <span class="display_name"><a href="/profile/8037844" class='display_username username usergroup1444001' data-toggle="popover" data-placement="bottom">@include('partials.discussion-header')</a></span>
@@ -105,7 +105,7 @@
 
                                 @if($discussion->bestReply)
 
-                                <div class="card card-success my-5">
+                                <div class="card card-success my-5" style="margin-top: 10px;">
                                     <div class="card-header">
                                         <div class="d-flex justify-content-between">
                                             <div>
@@ -132,7 +132,7 @@
                     </form>
 
                     @foreach($discussion->replies()->paginate(3) as $reply)
-                    <form id="first_post" method="post" action="" name="first_post" data-prevent-ctrl-enter="true">
+                    <form id="first_post" method="post" action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply]) }}" name="first_post" data-prevent-ctrl-enter="true">
                         <div id="post_list_1325785074" class="post-body pull-left" data-post-userid="8037844">
                             <div>
                                 <img width="40px" height="40px" style="border-radius: 50%;" src="{{ Gravatar::src($reply->owner->email) }}" alt="">
@@ -145,7 +145,7 @@
                                 @if(auth()->user()->id === $discussion->user_id)
                                 <form action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply]) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm btn-info">Mark ad best reply</button>
+                                    <button type="submit" class="btn btn-sm btn-info text-md-right">Marcar como mejor respuesta</button>
                                 </form>
 
                                 @endif
@@ -153,13 +153,14 @@
                                 @endauth
 
                             </div>
-
                             <div class="card-body">
                                 {!! $reply->content !!}
                             </div>
                         </div>
                     </form>
+
                     @endforeach
+
 
 
                     <form id="first_post" method="post" action="{{ route('replies.store', $discussion->slug) }}" name="first_post" data-prevent-ctrl-enter="true">
