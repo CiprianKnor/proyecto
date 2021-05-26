@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Discussion;
 use App\Reply;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateDiscussionRequest;
 use DB;
+use Auth;
 
 class DiscussionsController extends Controller
 {
@@ -23,6 +25,7 @@ class DiscussionsController extends Controller
      */
     public function index(Request $request)
     {
+        
         //$discussions = $query->filterByChannels()->paginate(15);
         $title = $request->title;
         if ($title) {
@@ -101,8 +104,9 @@ class DiscussionsController extends Controller
      */
     public function show(Discussion $discussion)
     {
+        $user = Auth::user();
         return view('discussions.show', [
-            'discussion' => $discussion
+            'discussion' => $discussion,'user' => $user
         ]);
     }
 

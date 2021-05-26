@@ -4,7 +4,7 @@
 <div class="container">
     <div class="container content-panel wt-selectable-rows">
         <div id="posts-list" data-post-order="asc" data-current-page="" data-total-pages="" data-total-posts="">
-
+       
 
             <div class="col-xs-12 first-post  unSelectableRow">
 
@@ -84,6 +84,8 @@
                                 <form action="/discussions/{{ $discussion->id }}" method="post">
 
                                     @csrf
+                                    @if(!empty($user))
+
 
                                     @if(auth()->user()->isadmin() == true)
                                     <div class="row" style="float: right;">
@@ -91,6 +93,9 @@
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
                                     </div>
+                                    @endif
+
+                                    
                                     @endif
 
                                     @can('read-task', $discussion)
@@ -145,7 +150,7 @@
                                 @if(auth()->user()->id === $discussion->user_id)
                                 <form action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply]) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm btn-info text-md-right">Marcar como mejor respuesta</button>
+                                    <button type="submit" class="btn btn-sm btn-info text-md-right" style="float: right;">Marcar como mejor respuesta</button>
                                 </form>
 
                                 @endif
@@ -163,8 +168,8 @@
 
 
 
-                    <form id="first_post" method="post" action="{{ route('replies.store', $discussion->slug) }}" name="first_post" data-prevent-ctrl-enter="true">
-                        <div id="post_list_1325785074" class="post-body pull-left" data-post-userid="8037844">
+                    <form id="first_post" method="post" action="{{ route('replies.store', $discussion->slug) }}" name="first_post" style="width:50%; float:right;">
+                        <div id="post_list_1325785074" class="post-body pull-right" >
                             <div class="card my-5">
                                 <div class="card-header">
                                     Add a reply
@@ -176,10 +181,10 @@
                                     <form action="{{ route('replies.store', $discussion->slug) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="content" id="content">
-                                        <input type="text" name="content">
+                                        <textarea name="content" id="content" cols="1" rows="2" style="width: 100%; resize:none; "></textarea>
 
 
-                                        <button type="submit" class="btn btn-sm my-2 btn-success">
+                                        <button type="submit" class="btn btn-sm my-2 btn-success" style="float: right;">
                                             Add reply
                                         </button>
                                     </form>
