@@ -17,6 +17,7 @@
     <link href="https://cdn.websitetoolbox.com/css/forum1_global.css" rel="stylesheet">
 
 </head>
+
 <body>
 
     <div id="body-wrapper">
@@ -36,7 +37,7 @@
                                         </span>
 
                                         <span id="forumTitleWrapper">
-                                            Stage2
+                                            <img src="{{ asset('img/logo.png') }}" alt="" style="z-index: 1000;">
                                         </span>
 
                                     </a>
@@ -81,13 +82,13 @@
 
                     <ul class="nav pull-right">
                         @guest
-                        
-                            <a href="{{ route('login') }}" class="nav-link" id="login" style="color: white; margin-right:5px;">Inicia Sesion</a>
-                        
+
+                        <a href="{{ route('login') }}" class="nav-link" id="login" style="color: white; margin-right:5px;">Inicia Sesion</a>
+
                         @if (Route::has('register'))
-                        
-                            <a href="{{ route('register') }}" class="nav-link" id="register" style="color: white; margin-right:5px;">Registro</a>
-                        
+
+                        <a href="{{ route('register') }}" class="nav-link" id="register" style="color: white; margin-right:5px;">Registro</a>
+
                         @endif
                         @else
                         <li class="nav-item dropdown">
