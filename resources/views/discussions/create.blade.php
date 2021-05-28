@@ -1,49 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container content-panel forum-list all-topics-list wt-topics">
-    <div role="tabpanel" class="tab-pane active" id="topics">
 
-        <div class="card">
-            <div class="card-header">Add Discussion</div>
+<div class="card">
+    <div class="card-body">
 
-            <div class="card-body">
+        <form action="{{ route('discussions.store') }}" method="post" enctype="multipart/form-data" class="container" style="margin-top:5%;">
+            <div class="post-body pull-left container">
+                <div class="card-header">Añade discusion</div>
+                <br>
+                @csrf
+                <div class="form-group">
+                    <label for="title">Titulo</label>
+                    <input type="text" class="form-control" name="title" value="">
+                </div>
 
-                <form action="{{ route('discussions.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" name="title" value="">
-                    </div>
+                @error('title')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
-                    @error('title')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                <div class="form-group">
+                    <label for="content">Contenido</label>
+                    <input id="content" type="hidden" name="content">
+                    <textarea name="content" id="content" cols="1" rows="2" style="width: 100%; resize:none; "></textarea>
+                </div>
 
-                    <div class="form-group">
-                        <label for="content">Content</label>
-                        <input id="content" type="hidden" name="content">
-                        <input type="text" name="content">
-                    </div>
+                <div class="form-group">
+                    <input type="file" name="image" id="image" placeholder="choose image">
+                </div>
 
-                    <div class="form-group">
-                        <input type="file" name="image" id="image" placeholder="choose image">
-                    </div>
+                <div class="form-group">
+                    <label for="channel">Categoria</label>
+                    <select name="channel" id="channel" class="form-control">
+                        @foreach($channels as $channel)
+                        <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-                    <div class="form-group">
-                        <label for="channel">Channel</label>
-                        <select name="channel" id="channel" class="form-control">
-                            @foreach($channels as $channel)
-                            <option value="{{ $channel->id }}">{{ $channel->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                <button type="submit" class="btn btn-success" style="float: right;">Crear</button>
+        </form>
 
-                    <button type="submit" class="btn btn-success">Create Discussion</button>
-                </form>
-
-            </div>
-        </div>
     </div>
 </div>
 

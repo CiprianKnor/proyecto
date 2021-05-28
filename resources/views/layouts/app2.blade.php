@@ -82,11 +82,11 @@
                     <ul class="nav pull-right">
                         @guest
                         
-                            <a href="{{ route('login') }}" class="nav-link" id="login" style="color: white; margin-right:5px;">{{ __('Login') }}</a>
+                            <a href="{{ route('login') }}" class="nav-link" id="login" style="color: white; margin-right:5px;">Inicia Sesion</a>
                         
                         @if (Route::has('register'))
                         
-                            <a href="{{ route('register') }}" class="nav-link" id="register" style="color: white; margin-right:5px;">{{ __('Register') }}</a>
+                            <a href="{{ route('register') }}" class="nav-link" id="register" style="color: white; margin-right:5px;">Registro</a>
                         
                         @endif
                         @else
@@ -96,7 +96,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item a-mio" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                            Cerrar Sesion
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

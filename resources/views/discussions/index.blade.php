@@ -2,15 +2,15 @@
 
 @section('content')
 
-<div class="container content-panel forum-list all-topics-list wt-topics">
+<div class="container content-panel forum-list all-topics-list wt-topics" style="padding-bottom:0px;">
     <div role="tabpanel" class="tab-pane active" id="topics">
 
         @if(!in_array(request()->path(), ['login', 'register', 'password/email', 'password/reset']))
 
         @auth
-        <a href="{{ route('discussions.create') }}" class="pull-right btn btn-uppercase btn-primary start-new-topic-btn"><span data-i18n>New Topic</span></a>
+        <a href="{{ route('discussions.create') }}" class="pull-right btn btn-uppercase btn-primary start-new-topic-btn"><span data-i18n>Nueva discusion</span></a>
         @else
-        <a href="{{ route('login') }}" class="pull-right btn btn-uppercase btn-primary start-new-topic-btn"><span data-i18n>Sign in to add discussion</span></a>
+        <a href="{{ route('login') }}" class="pull-right btn btn-uppercase btn-primary start-new-topic-btn"><span data-i18n>Inicia sesion para añadir una discusion</span></a>
         @endif
         @else
         <main class="py-4">
@@ -19,7 +19,7 @@
         @endif
 
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="/latest" aria-controls="topics" role="tab" data-toggle="tab" data-i18n>Topics</a></li>
+            <li role="presentation" class="active"><a href="/latest" aria-controls="topics" role="tab" data-toggle="tab" data-i18n>Discusiones</a></li>
         </ul>
 
         <div class="tab-content">
@@ -38,6 +38,8 @@
     </div>
 </div>
 
-<!--{{ $discussions->appends(['channel' => request()->query('channel') ])->links() }}-->
+<div class="container" style="text-align: right; padding-bottom:0px;">
+    {{$discussions->links("pagination::bootstrap-4")}}
+</div>
 
 @endsection
