@@ -10,7 +10,7 @@
 
                 <div class="pull-left post-body-wrapper" data-divToolsId="divForumTools">
 
-                    <div id="" class="post-body pull-left">
+                    <div id="" class="post-body pull-left" style="border:1px solid #DFDFDF;">
 
                         <span class="post-body-author" style="text-align:center;">
                             <span class="display_name"><a class='display_username username'>@include('partials.discussion-header')</a></span>
@@ -26,6 +26,7 @@
                             <div class="text-center">
                                 <strong>{{ $discussion->title }}</strong>
                             </div>
+                            <br>
                             {!! $discussion->content !!}
                             @if($discussion->url)
                             <br>
@@ -113,7 +114,7 @@
 
                     @if($discussion->bestReply)
                     <form id="first_post" method="post">
-                        <div id="" class="post-body pull-left">
+                        <div id="" class="post-body pull-left" style="border:1px solid #DFDFDF;">
                             <div class="card card-success my-5" style="margin-top: 10px;">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between">
@@ -139,7 +140,7 @@
 
                     @foreach($discussion->replies()->paginate(3) as $reply)
                     <form id="first_post" method="post" action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply]) }}" name="first_post" data-prevent-ctrl-enter="true">
-                        <div id="" class="post-body pull-left">
+                        <div id="" class="post-body pull-left" style="border:1px solid #DFDFDF;">
                             <div style="text-align:center;">
                                 <img width="40px" height="40px" style="border-radius: 50%;" src="{{ Gravatar::src($reply->owner->email) }}" alt="">
                                 <span>{{ $reply->owner->name }}</span>
@@ -171,7 +172,7 @@
 
 
                     <form id="first_post" method="post" action="{{ route('replies.store', $discussion->slug) }}" style="width:50%; float:right;">
-                        <div id="" class="post-body pull-right">
+                        <div id="" class="post-body pull-right" style="border:1px solid #DFDFDF;">
                             <div class="card my-5">
                                 <div class="card-header">
                                     Añade una respuesta

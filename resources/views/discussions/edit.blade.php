@@ -6,7 +6,7 @@
     <div class="card-body">
 
         <form action="/discussions/{{$discussion->id}}" method="post" enctype="multipart/form-data" class="container" style="margin-top:5%;">
-            <div class="post-body pull-left container">
+            <div class="post-body pull-left container" style="border:1px solid #DFDFDF;">
                 <div class="card-header">Edita la discusión</div>
                 <br>
                 @csrf

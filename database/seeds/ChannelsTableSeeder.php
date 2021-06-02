@@ -13,13 +13,13 @@ class ChannelsTableSeeder extends Seeder
     public function run()
     {
         Channel::create([
-            'name' => 'Presentación',
-            'slug' => str_slug('Presentacion')
+            'name' => 'Consultas',
+            'slug' => str_slug('Consultas')
         ]);
 
         Channel::create([
-            'name' => 'Consultas',
-            'slug' => str_slug('Consultas')
+            'name' => 'Presentación',
+            'slug' => str_slug('Presentacion')
         ]);
 
         Channel::create([
@@ -33,8 +33,13 @@ class ChannelsTableSeeder extends Seeder
         ]);
 
         Channel::create([
-            'name' => 'Fotos y Videos',
-            'slug' => str_slug('Fotos y Videos')
+            'name' => 'Venta',
+            'slug' => str_slug('Venta')
+        ]);
+
+        Channel::create([
+            'name' => 'Fotos',
+            'slug' => str_slug('Fotos')
         ]);
     }
 }
