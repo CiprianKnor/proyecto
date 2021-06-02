@@ -38,12 +38,16 @@
 
                                 @csrf
 
+                                @if(!empty($user))
+
                                 @if(auth()->user()->isadmin() == true)
                                 <div class="row" style="float: right;">
                                     <a href="/discussions/{{ $discussion->id }}/edit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline; margin-right:5px;">Editar</a>
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="submit" class="btn btn-sm" style="color: #676A85; background-color:white; text-decoration:underline;" value="Eliminar">
                                 </div>
+                                @endif
+
                                 @endif
 
                                 @can('read-task', $discussion)

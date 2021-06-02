@@ -16,6 +16,10 @@
                     <input type="text" class="form-control" name="title" value="{{ $discussion->title }}">
                 </div>
 
+                @if(\Session::has('error'))
+                <div class="alert alert-danger">{!! \Session::get('error') !!}</div>
+                @endif
+
                 <div class="form-group">
                     <label for="title">Contenido</label>
                     <input type="text" class="form-control" id="content" name="content" value="{{ $discussion->content }}">

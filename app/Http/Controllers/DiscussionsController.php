@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateDiscussionRequest;
 use DB;
 use Auth;
+use Exception;
 
 class DiscussionsController extends Controller
 {
@@ -25,7 +26,7 @@ class DiscussionsController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         //$discussions = $query->filterByChannels()->paginate(15);
         $title = $request->title;
         if ($title) {
@@ -69,7 +70,7 @@ class DiscussionsController extends Controller
             $file = $request->file('image')->getClientOriginalName();
             $files = $request->file('image');
             $name = $files->getClientOriginalName();
-            $path = public_path().'/storage';
+            $path = public_path() . '/storage';
             $files->move($path, $name);
 
             $name = $request->file('image')->getClientOriginalName();
@@ -106,7 +107,7 @@ class DiscussionsController extends Controller
     {
         $user = Auth::user();
         return view('discussions.show', [
-            'discussion' => $discussion,'user' => $user
+            'discussion' => $discussion, 'user' => $user
         ]);
     }
 
@@ -132,10 +133,14 @@ class DiscussionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $discussion = Discussion::find($id);
-        $discussion->update($request->all());
 
-        return redirect('discussions');
+        try {
+            $discussion = Discussion::find($id);
+            $discussion->update($request->all());
+            return redirect('discussions');
+        } catch (Exception $e) {
+            return back()->with('error', 'No se puede poner el titulo de una publicacion existente');
+        }
     }
 
     /**
