@@ -1,5 +1,28 @@
 <!DOCTYPE html>
 
+<style>
+    @media (min-width: 768px) {
+        .miooo {
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .miooo {
+            color: white;
+            opacity: 1;
+        }
+
+        .tambnmio {
+            width: 0;
+        }
+    }
+</style>
+
+<script>
+
+</script>
+
 
 <html>
 
@@ -25,6 +48,7 @@
     <link rel="stylesheet" href="https://cdn.websitetoolbox.com/css/bootstrap.css">
     <link href="https://cdn.websitetoolbox.com/skins/mb/angela/angela.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.websitetoolbox.com/css/forum1_global.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 </head>
 
@@ -37,19 +61,45 @@
                     <div class="nav-main-container col-xs-10">
                         <div class="nav-main">
                             <div class="push-panel">
+                                <div class="btn-group">
+                                    <a href="" data-toggle="dropdown">
+                                        <i class="fas fa-bars miooo"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        @foreach($channels as $channel)
+                                        <li class="list-group-item">
+                                            <a href="{{ route('discussions.index') }}?channel={{ $channel->slug }}">
+                                                {{$channel->name}}
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                                 <h3 id="logo_wrapper">
-                                    <a href="/" id="logo_or_title">
-                                        <span id="forumLogoWrapper">
-                                        
-                                        </span>
-
-                                        <span id="forumTitleWrapper">
+                                    <a href="/">
+                                        <span>
                                             <img src="{{ asset('img/logo.png') }}" alt="" style="z-index: 1000;">
                                         </span>
                                     </a>
                                 </h3>
-                            </div>
+                                <style>
+                                    @media (min-width: 768px) {
+                                        .tambnmio {
+                                            display: none;
+                                        }
+                                    }
 
+                                    @media (max-width: 767px) {
+
+                                        .tambnmio {
+                                            display: block;
+                                        }
+                                    }
+                                </style>
+                                <form name="inlineSearchForm" method="get" action="/discussions" id="inlineSearchForm" style="margin-right: 70px; " class="tambnmio">
+                                    <input type="text" class="form-control pl-3" placeholder="Buscar..." name="title">
+                                </form>
+                            </div>
 
 
                             <div class="search-wrapper pull">
@@ -75,12 +125,13 @@
                         </div>
                     </div>
 
+
                     @auth
                     <li class="nav-item">
                         <a href="{{ route('users.notifications') }}" class="nav-link">
                             <span>
                                 {{ auth()->user()->unreadNotifications->count() }}
-                                Notificaciones sin leer
+                                Notificaciones
                             </span>
                         </a>
                     </li>

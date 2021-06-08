@@ -18,13 +18,13 @@
                             Alguien te ha respondido a
 
                             <strong>{{ $notification->data['discussion']['title'] }}</strong>
-                            <a href="{{ route('discussions.show', $notification->data['discussion']['slug']) }}" class="btn btn-sm btn-info float-right">
+                            <a href="{{ route('discussions.show', $notification->data['discussion']['slug']) }}" class="btn btn-sm btn-info float-right" style="color: white;">
                                 Ver discusion
                             </a>
                             @endif
                             @if($notification->type === 'App\Notifications\ReplyMarkedAsBestReply')
                             Tu respuesta a <strong>{{ $notification->data['discussion']['title'] }}</strong> se ha marcado como mejor respuesta
-                            <a href="{{ route('discussions.show', $notification->data['discussion']['slug']) }}" class="btn btn-sm btn-info float-right">
+                            <a href="{{ route('discussions.show', $notification->data['discussion']['slug']) }}" class="btn btn-sm btn-info float-right" style="color: white;">
                                 Ver discusion
                             </a>
                             @endif
@@ -34,6 +34,7 @@
 
                     </div>
                 </div>
+            </div>
         </form>
     </div>
     <div class="container" style="text-align: right;">

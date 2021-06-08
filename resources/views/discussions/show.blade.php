@@ -12,7 +12,7 @@
 
                     <div id="" class="post-body pull-left" style="border:1px solid #DFDFDF;">
 
-                        <span class="post-body-author" style="text-align:center;">
+                        <span style="text-align:center;">
                             <span class="display_name"><a class='display_username username'>@include('partials.discussion-header')</a></span>
                         </span>
                         <span class="text-muted post-date">

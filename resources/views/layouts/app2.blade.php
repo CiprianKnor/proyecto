@@ -46,27 +46,9 @@
 
 
                             <div class="search-wrapper pull">
-                                <span class="glyphicon glyphicon-search"></span>
                                 <form name="inlineSearchForm" method="get" action="/discussions" id="inlineSearchForm">
-
                                     <input type="text" class="form-control pl-3" placeholder="Buscar..." name="title">
-
                                 </form>
-
-                                <div class="btn-group search-category">
-                                    <button id="searchContent" class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
-                                        <span id="buttonName" data-i18n>Categorias</span>
-                                    </button>
-                                    <ul class="dropdown-menu left" role="menu">
-                                        @foreach($channels as $channel)
-                                        <li class="list-group-item">
-                                            <a href="{{ route('discussions.index') }}?channel={{ $channel->slug }}">
-                                                {{$channel->name}}
-                                            </a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
