@@ -128,7 +128,7 @@
 
                     @auth
                     <li class="nav-item">
-                        <a href="{{ route('users.notifications') }}" class="nav-link">
+                        <a href="{{ route('users.notifications') }}" class="nav-link" style="color:white;">
                             <span>
                                 {{ auth()->user()->unreadNotifications->count() }}
                                 Notificaciones
@@ -149,7 +149,7 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
                                 {{ Auth::user()->name }} <span class="caret">
                                     <div class="dropdown-menu" style="padding-left:20px;">
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
